@@ -54,6 +54,17 @@
 ; Display battery percentage
 (display-battery-mode 1)
 
+; Disable start-up screen
+(setq inhibit-startup-screen t)
+; Empty the initial \*scratch\* buffer
+(setq initial-scratch-message "")
+; Hide the Menu bar
+(menu-bar-mode -1)
+; Hide the Scroll bar
+(toggle-scroll-bar -1)
+; Hide the tool bar
+(tool-bar-mode -1)
+
 ; Set external file created by Custom
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
 (load custom-file)
