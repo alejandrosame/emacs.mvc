@@ -1,3 +1,4 @@
+; Install straight.el
 (defvar bootstrap-version)
 (let ((bootstrap-file
        (expand-file-name "straight/repos/straight.el/bootstrap.el" user-emacs-directory))
@@ -10,6 +11,10 @@
       (goto-char (point-max))
       (eval-print-last-sexp)))
   (load bootstrap-file nil 'nomessage))
+
+; Make calls to 'use-package become 'straight-use-package
+(straight-use-package 'use-package)
+(setq straight-use-package-by-default t)
 
 ; Make sure that native compilation sends the compiled files to the right directory
 ; TODO: Figure out why this doesn't work
@@ -45,23 +50,6 @@
 ; Display battery percentage
 (display-battery-mode 1)
 
-
-(unless (package-installed-p 'use-package)
-  (package-install 'use-package))
-(require 'use-package)
-; ensures that each package that is configured using ~use-package~ is installed
-(setq use-package-always-ensure t) 
-
-
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(package-selected-packages '(use-package)))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
+; Set external file created by Custom
+(setq custom-file (expand-file-name "custom.el" user-emacs-directory))
+(load custom-file)
