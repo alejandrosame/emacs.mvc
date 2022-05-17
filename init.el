@@ -12,10 +12,14 @@
       (eval-print-last-sexp)))
   (load bootstrap-file nil 'nomessage))
 
-; Make calls to 'use-package become 'straight-use-package
+; Install 'use-package with straight.el
 (straight-use-package 'use-package)
+; Make calls to 'use-package become 'straight-use-package
 (setq straight-use-package-by-default t)
-
+; Finaliza 'use-package and straight.el integration. This allows us
+; to use 'use-package with straight.el without requiring :straight t option.
+(use-package straight
+             :custom (straight-use-package-by-default t))
 ; Make sure that native compilation sends the compiled files to the right directory
 ; TODO: Figure out why this doesn't work
 ;(add-to-list 'native-comp-eln-load-path (expand-file-name "eln-cache/" user-emacs-directory))
